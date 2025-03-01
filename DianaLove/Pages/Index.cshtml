@@ -44,12 +44,13 @@
             padding: 15px 30px;
             font-size: 1.2em;
             border-radius: 50px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Добавляем анимацию для фона и трансформации */
         }
 
             .btn-primary:hover {
                 background-color: #c2185b; /* Цвет кнопки при наведении */
                 border-color: #c2185b;
+                transform: scale(1.05); /* Увеличение размера кнопки при наведении */
             }
 
         .compliment-result {
@@ -58,7 +59,7 @@
             margin-top: 20px;
             font-style: italic;
             opacity: 0; /* Скрываем текст по умолчанию */
-            transition: opacity 0.5s ease; /* Плавный переход */
+            transition: opacity 0.5s ease; /* Плавный переход для непрозрачности */
         }
 
             .compliment-result.show {
@@ -75,7 +76,14 @@
                 .then(data => {
                     const resultDiv = document.getElementById('complimentResult');
                     resultDiv.innerHTML = data;
-                    resultDiv.classList.add('show'); // Убираем скрытие
+
+                    // Удаляем класс show (если он есть), чтобы потом добавить его обратно
+                    resultDiv.classList.remove('show');
+
+                    // Используем requestAnimationFrame для плавного эффекта
+                    requestAnimationFrame(() => {
+                        resultDiv.classList.add('show'); // Убираем скрытие и включаем видимость
+                    });
                 });
         }
     </script>

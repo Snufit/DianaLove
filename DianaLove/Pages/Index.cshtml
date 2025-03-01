@@ -1,0 +1,82 @@
+﻿@page
+@model Dianalove.Pages.IndexModel
+@{
+    ViewData["Title"] = "Комплименты для Дианы";
+}
+
+<div class="container">
+    <h1 class="title">Комплименты для Дианы</h1>
+    <div class="text-center">
+        <button class="btn btn-primary compliment-button" onclick="generateCompliment()">Получить комплимент</button>
+        <div id="complimentResult" class="compliment-result mt-4"></div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f0; /* Светлый фон */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .title {
+            color: #d5006d; /* Цвет заголовка */
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #ec407a; /* Цвет кнопки */
+            border-color: #ec407a; /* Цвет рамки кнопки */
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #c2185b; /* Цвет кнопки при наведении */
+                border-color: #c2185b;
+            }
+
+        .compliment-result {
+            font-size: 1.5em;
+            color: #d5006d; /* Цвет текста комплиментов */
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0; /* Скрываем текст по умолчанию */
+            transition: opacity 0.5s ease; /* Плавный переход */
+        }
+
+            .compliment-result.show {
+                opacity: 1; /* Показать текст с эффектом */
+            }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        function generateCompliment() {
+            fetch('@Url.Page("/Index", "GenerateCompliment")')
+                .then(response => response.text())
+                .then(data => {
+                    const resultDiv = document.getElementById('complimentResult');
+                    resultDiv.innerHTML = data;
+                    resultDiv.classList.add('show'); // Убираем скрытие
+                });
+        }
+    </script>
+}

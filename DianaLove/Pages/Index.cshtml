@@ -8,12 +8,28 @@
 
 <div class="container">
     <h1 class="title">Комплименты для Дианы</h1>
-    
+
     <div class="text-center">
         <button class="btn btn-primary compliment-button" onclick="generateCompliment()">
             <i class="fas fa-star"></i> Получить комплимент
         </button>
         <div id="complimentResult" class="compliment-result mt-4"></div>
+    </div>
+
+    <!-- Форма для добавления пользовательских комплиментов -->
+    <div class="mt-5">
+        <h2>Добавить свой комплимент</h2>
+        <form id="complimentForm" onsubmit="addCompliment(event)">
+            <textarea id="userCompliment" placeholder="Введите свой комплимент" required rows="3" style="width: 100%;"></textarea>
+            <br />
+            <button type="submit" class="btn btn-primary mt-2">Добавить комплимент</button>
+        </form>
+    </div>
+
+    <!-- Список пользовательских комплиментов -->
+    <div id="userCompliments" class="mt-5">
+        <h3>Пользовательские комплименты</h3>
+        <ul id="complimentList"></ul>
     </div>
 
     <!-- Кнопка для переключения тем в виде сердца -->
@@ -59,6 +75,23 @@
                         resultDiv.classList.add('show'); // Убираем скрытие и включаем видимость
                     });
                 });
+        }
+
+        // Функция для добавления пользовательского комплимента
+        function addCompliment(event) {
+            event.preventDefault(); // Избегаем перезагрузки страницы
+            const userCompliment = document.getElementById('userCompliment').value;
+
+            // Создаем элемент списка и добавляем его
+            const li = document.createElement('li');
+            li.textContent = userCompliment;
+
+            // Добавляем новый комплимент в список
+            const complimentList = document.getElementById('complimentList');
+            complimentList.appendChild(li);
+
+            // Очищаем поле ввода
+            document.getElementById('userCompliment').value = '';
         }
     </script>
 }

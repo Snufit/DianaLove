@@ -45,12 +45,12 @@
 }
 
     .heart-background::before {
-        content: "❤️"; /* Множественные сердца */
+        content: "❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️"; /* Множественные сердца */
         position: absolute;
-        font-size: 300px; /* Размер сердца */
+        font-size: 150px; /* Размер сердца */
         color: hsl(0, 100, 50); /* Полупрозрачный красный цвет */
         animation: heart-animation 10s infinite; /* Анимация */
-        top: 15%; /* Центрируем по вертикали */
+        top: 10%; /* Центрируем по вертикали */
         left: 50%; /* Центрируем по горизонтали */
         transform: translate(-50%, -50%); /* Центрирование по основным осям */
         white-space: nowrap; /* Чтобы сердца не перетаскивались на новую строку */
@@ -134,4 +134,23 @@
 
     .btn-heart:hover {
         transform: scale(1.2); /* Увеличение размера сердца при наведении */
+    }
+
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    resize: none;
+}
+
+#complimentList {
+    list-style-type: none; /* Убираем маркеры */
+    padding: 0; /* Убираем отступы */
+}
+
+    #complimentList li {
+        background: rgba(255, 200, 200, 0.5); /* Можно изменить цвета */
+        margin: 5px 0; /* Отступы между элементами списка */
+        padding: 10px;
+        border-radius: 5px;
     }
